@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Alert} from 'react-native';
+import { StyleSheet, Text, View, Alert, Vibration} from 'react-native';
 
 
 export default function App() {
   // Python habit: Initialize your variables (States)
-  const [seconds, setSeconds] = useState(1 * 5); 
+  const [seconds, setSeconds] = useState(5 * 60); 
   const [bgColor, setBgColor] = useState('#FFFFFF'); // Fixed the hex code to 6 digits
   const [isFlashing, setIsFlashing] = useState(false);
 
@@ -23,7 +23,9 @@ export default function App() {
   }, []);
 
   const triggerFlash = () => {
-    Alert.alert("Drink Up!", "Time to hydrate! 💧",[{text:'alr', onPress:() => setSeconds(1*5)}]);
+    Vibration.vibrate([0, 500, 200, 500]);
+
+    Alert.alert("Drink Up!", "Time to hydrate! 💧",[{text:'alr', onPress:() => setSeconds(5*60)}]);
 
     const colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#FFF333', '#33FFF3', '#FF3333'];
     setIsFlashing(true);
